@@ -282,6 +282,31 @@ h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.08; text-transform: upp
 .partner p { color: var(--ink-soft); line-height: 1.55; font-size: 16px; }
 .partner-art { font-size: 120px; text-align: center; line-height: 1; filter: drop-shadow(0 20px 30px rgba(138, 15, 60, 0.2)); }
 
+/* Автор */
+.author { display: grid; grid-template-columns: 420px 1fr; gap: 56px; align-items: center; background: linear-gradient(130deg, #fff 0%, #ffeef4 60%, #f3eaff 100%); border-radius: 36px; padding: 48px 56px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.fan { position: relative; height: 400px; }
+.fan-card { position: absolute; top: 20px; width: 230px; aspect-ratio: 3 / 4; border-radius: 22px; overflow: hidden; background: #fff; padding: 8px; box-shadow: 0 30px 60px -24px rgba(43, 15, 30, 0.45); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.fan-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+.fan-left { left: 10px; transform: rotate(-9deg); z-index: 1; }
+.fan-right { left: 160px; top: 40px; transform: rotate(7deg); z-index: 2; }
+.fan:hover .fan-left { transform: rotate(-13deg) translateX(-14px); }
+.fan:hover .fan-right { transform: rotate(10deg) translateX(14px); }
+.fan-ph { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 16px; font-family: var(--display); font-size: 80px; font-weight: 800; color: #fff; background: radial-gradient(circle at 30% 20%, #ffc56b 0, transparent 45%), linear-gradient(150deg, #ff5d8f, #8a0f3c); }
+.fan-right .fan-ph { background: radial-gradient(circle at 70% 20%, #ffd1df 0, transparent 45%), linear-gradient(150deg, #9b6bff, #5b2bb5); }
+.fan-sticker { position: absolute; z-index: 3; right: 0; bottom: 6px; transform: rotate(-6deg); font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--wine); background: #fff; padding: 12px 18px; border-radius: 18px; box-shadow: var(--shadow); }
+.author-text blockquote { margin: 10px 0 24px; font-size: 21px; line-height: 1.5; font-weight: 600; color: var(--ink); position: relative; }
+.author-text blockquote::before { content: "“"; position: absolute; left: -10px; top: -46px; font-family: Georgia, serif; font-size: 120px; color: var(--rose-200); line-height: 1; z-index: -1; }
+.author-sign b { display: block; font-family: var(--display); font-size: 20px; color: var(--wine); margin-bottom: 4px; }
+.author-sign span { color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
+@media (max-width: 920px) {
+  .author { grid-template-columns: 1fr; padding: 30px 22px; gap: 10px; }
+  .fan { height: 330px; width: 320px; max-width: 100%; margin: 0 auto; }
+  .fan-card { width: 185px; }
+  .fan-left { left: 0; }
+  .fan-right { left: 120px; }
+  .author-text blockquote { font-size: 17px; }
+}
+
 /* FAQ */
 .faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
 .faq details { background: var(--card); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: var(--shadow); }

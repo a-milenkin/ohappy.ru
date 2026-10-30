@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Footer, Header } from "@/components/Chrome";
+import Author from "@/components/Author";
 import Examples from "@/components/Examples";
 import OccasionChips from "@/components/OccasionChips";
 import PresetButton from "@/components/PresetButton";
@@ -228,6 +229,12 @@ export default function Home() {
                 <details key={q}><summary>{q}</summary><p>{a}</p></details>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section id="author">
+          <div className="wrap">
+            <Author />
           </div>
         </section>
 
