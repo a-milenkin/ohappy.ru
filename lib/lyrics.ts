@@ -45,14 +45,39 @@ function userPrompt(b: SongBrief) {
   ].join("\n");
 }
 
-export async function writeLyrics(brief: SongBrief): Promise<LyricsDraft> {
-  const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) return demoLyrics(brief);
+// Claude через kie.ai (LYRICS_VIA_KIE=1, работает и с российских серверов) и/или напрямую.
+// Если первый вариант упал — пробуем следующий.
+function claudeEndpoints() {
+  const list: { url: string; headers: Record<string, string> }[] = [];
+  if (process.env.LYRICS_VIA_KIE === "1" && process.env.KIE_API_KEY) {
+    list.push({ url: "https://api.kie.ai/claude/v1/messages", headers: { Authorization: `Bearer ${process.env.KIE_API_KEY}` } });
+  }
+  if (process.env.ANTHROPIC_API_KEY) {
+    list.push({ url: "https://api.anthropic.com/v1/messages", headers: { "x-api-key": process.env.ANTHROPIC_API_KEY } });
+  }
+  return list;
+}
 
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+export async function writeLyrics(brief: SongBrief): Promise<LyricsDraft> {
+  const endpoints = claudeEndpoints();
+  if (!endpoints.length) return demoLyrics(brief);
+  let lastError: unknown;
+  for (const endpoint of endpoints) {
+    try {
+      return await callClaude(endpoint, brief);
+    } catch (e) {
+      console.error("lyrics via", endpoint.url, e);
+      lastError = e;
+    }
+  }
+  throw lastError;
+}
+
+async function callClaude(endpoint: { url: string; headers: Record<string, string> }, brief: SongBrief): Promise<LyricsDraft> {
+  const res = await fetch(endpoint.url, {
     method: "POST",
     headers: {
-      "x-api-key": key,
+      ...endpoint.headers,
       "anthropic-version": "2023-06-01",
       "content-type": "application/json",
     },
