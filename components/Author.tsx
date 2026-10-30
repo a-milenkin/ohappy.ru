@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Фото автора лежат в public/author/. Пока файла нет — показываем мягкую заглушку.
-const PHOTOS = ["/author/olya-1.jpg", "/author/olya-2.jpg"];
+const PHOTOS = ["/author/olya-1.webp", "/author/olya-2.webp"];
 
 function Photo({ src, className }: { src: string; className: string }) {
   const [ok, setOk] = useState(true);
