@@ -122,6 +122,22 @@ h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0.02e
 .field:focus { border-color: var(--berry); outline: none; }
 textarea.field { height: auto; min-height: 150px; padding: 14px 16px; line-height: 1.5; resize: vertical; }
 textarea.lyrics { min-height: 300px; font-size: 14px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+.dictation { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 12px; }
+.mic-btn { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 18px 0 6px; border-radius: 99px; border: 0; cursor: pointer; font-weight: 700; font-size: 14px; color: var(--wine); background: var(--rose-100); transition: background 0.2s, color 0.2s; }
+.mic-btn:hover { background: var(--rose-200); }
+.mic-ico { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: linear-gradient(180deg, #f0306f, var(--berry-2)); flex: none; }
+.mic-btn.on { background: var(--wine); color: #fff; }
+.mic-btn.on .mic-ico { background: #fff; color: var(--berry); animation: micPulse 1.4s ease-in-out infinite; }
+@keyframes micPulse { 50% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.25); } }
+.mic-wave { display: inline-flex; align-items: center; gap: 3px; height: 16px; }
+.mic-wave i { width: 3px; height: 100%; border-radius: 2px; background: currentColor; animation: wave 0.9s ease-in-out infinite; }
+.mic-wave i:nth-child(2) { animation-delay: 0.15s; }
+.mic-wave i:nth-child(3) { animation-delay: 0.3s; }
+.mic-wave i:nth-child(4) { animation-delay: 0.45s; }
+@keyframes wave { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
+.mic-hint { font-size: 13px; color: var(--ink-soft); }
+.mic-interim { flex-basis: 100%; margin: 0; font-size: 14px; color: var(--ink-soft); font-style: italic; }
+.mic-error { flex-basis: 100%; margin: 0; font-size: 13px; color: #b3123f; }
 .counter { text-align: right; font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }

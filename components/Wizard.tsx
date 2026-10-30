@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import Dictation from "@/components/Dictation";
 import { addMySong } from "@/lib/mySongs";
 import { GENRES, LANGUAGES, MOODS, OCCASIONS, QUALITIES, RECIPIENTS, SINGERS, STORY_HINTS, VOICES, type Quality } from "@/lib/options";
 
@@ -181,7 +182,11 @@ export default function Wizard() {
       {step === 1 && (
         <div className="wz-body" key="s1">
           <h3 className="wz-title">Расскажите о {who}</h3>
-          <p className="wz-sub">Пара живых деталей — и песня будет точно про {f.name || "этого человека"}. Можно коротко, списком.</p>
+          <p className="wz-sub">Пара живых деталей — и песня будет точно про {f.name || "этого человека"}. Можно коротко, списком или голосом.</p>
+          <Dictation lang={f.language} onText={(t) => t && setF((p) => {
+            const joined = p.story.trimEnd() ? `${p.story.trimEnd()} ${t}` : t.charAt(0).toUpperCase() + t.slice(1);
+            return { ...p, story: joined.slice(0, 1500) };
+          })} />
           <textarea className="field" value={f.story} maxLength={1500} autoFocus
             placeholder={`Например: ${f.name || "Оля"} обожает котов и путешествия, всегда опаздывает на 5 минут, но с кофе для всех. Познакомились в универе на паре по философии…`}
             onChange={(e) => set("story", e.target.value)} />
