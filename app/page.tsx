@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Footer, Header } from "@/components/Chrome";
+import Examples from "@/components/Examples";
 import OccasionChips from "@/components/OccasionChips";
 import PresetButton from "@/components/PresetButton";
 import Rotator from "@/components/Rotator";
@@ -55,6 +56,7 @@ export default function Home() {
                   уже подарили близким
                 </div>
               </div>
+              <a href="#examples" className="hero-listen"><i>▶</i>Послушайте песню для Оли</a>
               <ul className="hero-perks">
                 <li><Check />Без регистрации</li>
                 <li><Check />Ссылка-подарок с плеером</li>
@@ -66,7 +68,7 @@ export default function Home() {
         </section>
 
         <div className="perks-strip">
-          <div className="wrap">
+          <div className="wrap swipe">
             <div className="perk"><div className="perk-ico">🎧</div><div><b>Слушайте бесплатно</b><span>Оплата — только за скачивание</span></div></div>
             <div className="perk"><div className="perk-ico">🔗</div><div><b>Страница-подарок</b><span>Обложка, плеер и текст по ссылке</span></div></div>
             <div className="perk"><div className="perk-ico">⚡</div><div><b>Готово за минуты</b><span>Успеете даже в день праздника</span></div></div>
@@ -79,11 +81,22 @@ export default function Home() {
               <div className="kicker">Как это работает</div>
               <h2>Хит про близкого<br />за 3 шага</h2>
             </div>
-            <div className="steps">
+            <div className="steps swipe">
               <div className="step"><div className="step-ico">💌</div><span className="step-n">1</span><h3>Расскажите о человеке</h3><p>Имя, повод и пара тёплых деталей: как познакомились, что любит, какое словечко вечно повторяет.</p></div>
               <div className="step"><div className="step-ico">🎚️</div><span className="step-n">2</span><h3>Выберите звучание</h3><p>Жанр, настроение и голос — от нежной акустики до бодрого рэпа. Текст можно поправить.</p></div>
               <div className="step"><div className="step-ico">🎁</div><span className="step-n">3</span><h3>Подарите по ссылке</h3><p>Песня готова за пару минут. Отправьте ссылку — и ждите реакцию.</p></div>
             </div>
+          </div>
+        </section>
+
+        <section id="examples">
+          <div className="wrap">
+            <div className="sec-head">
+              <div className="kicker">Послушайте примеры</div>
+              <h2>Вот что получается за пару минут</h2>
+              <p>Настоящие песни из нашего сервиса — по коротким историям, как в анкете выше.</p>
+            </div>
+            <Examples />
           </div>
         </section>
 
@@ -121,7 +134,7 @@ export default function Home() {
               <h2>Платите, только если зацепило</h2>
               <p>Никаких подписок. Песня в студии стоит несколько тысяч и делается днями — здесь пара минут.</p>
             </div>
-            <div className="prices">
+            <div className="prices swipe">
               <div className="pcard">
                 <h3>Послушать</h3>
                 <div className="amount">0 ₽</div>
@@ -164,7 +177,7 @@ export default function Home() {
               <div className="kicker">Скоро</div>
               <h2>Не только песни</h2>
             </div>
-            <div className="soon-grid">
+            <div className="soon-grid swipe">
               <div className="soon-card poems"><span className="soon">скоро</span><span className="big-emoji" aria-hidden>📜</span><h3>Стихи</h3><p>Поздравление в стихах по вашей истории — для открытки, тоста или подписи к подарку.</p></div>
               <div className="soon-card chars"><span className="soon">скоро</span><span className="big-emoji" aria-hidden>🦸</span><h3>Персонажи</h3><p>Видео-поздравление от любимого героя: сказочного, мультяшного или киношного.</p></div>
             </div>
@@ -178,7 +191,7 @@ export default function Home() {
               <h2>Пусть Дед Мороз споёт ребёнку по имени</h2>
               <p>Песня, в которой Дед Мороз или Снегурочка хвалят малыша за год и вспоминают его успехи. А если хочется настоящей сказки — приходите в мастерскую или зовите Деда Мороза домой.</p>
             </div>
-            <div className="ny-grid">
+            <div className="ny-grid swipe">
               <div className="ny-card ny-song">
                 <div className="ny-snow" aria-hidden />
                 <span className="ny-emoji" aria-hidden>🎅</span>
