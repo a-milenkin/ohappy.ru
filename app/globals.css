@@ -213,8 +213,10 @@ h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.08; text-transform: upp
 .quote cite { font-style: normal; color: var(--ink-soft); font-size: 14px; }
 
 /* Примеры песен */
-.ex-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: start; }
-@media (max-width: 1100px) and (min-width: 821px) { .ex-grid { grid-template-columns: repeat(2, 1fr); } }
+/* Примеры идут одним рядом: на десктопе видно 4 карточки, остальные — прокруткой вбок. */
+.ex-grid { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3 * 18px) / 4.25); gap: 18px; align-items: start; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 4px 22px; margin-inline: -4px; scrollbar-width: thin; scrollbar-color: var(--rose-100) transparent; }
+.ex-grid > * { scroll-snap-align: start; }
+@media (max-width: 1100px) and (min-width: 821px) { .ex-grid { grid-auto-columns: calc((100% - 18px) / 2.3); } }
 .ex-card { background: #fff; border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .ex-card:hover { transform: translateY(-3px); }
 .ex-card.is-playing { box-shadow: 0 0 0 2px var(--berry), 0 24px 50px -20px rgba(224, 24, 94, 0.5); }
@@ -227,6 +229,7 @@ h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.08; text-transform: upp
 .ex-art-tatyana-jubilee { background: radial-gradient(circle at 80% 85%, #ffd1df 0, transparent 40%), linear-gradient(140deg, #9b6bff, #5b2bb5); }
 .ex-art-vika-30 { background: radial-gradient(circle at 80% 15%, #7ee0ff 0, transparent 40%), linear-gradient(140deg, #ff8a5c, #e0185e 75%); }
 .ex-art-misha-newyear { background: radial-gradient(circle at 15% 15%, #ffffff55 0, transparent 35%), linear-gradient(140deg, #ff6b6b, #8a0f3c); }
+.ex-art-claudio-rio { background: radial-gradient(circle at 80% 85%, #ffd84d 0, transparent 40%), linear-gradient(140deg, #19b37a, #0b6b8a 75%); }
 .ex-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(43, 15, 30, 0.55)); }
 .ex-tag { position: absolute; z-index: 1; top: 14px; left: 14px; font-size: 12px; font-weight: 800; background: rgba(255, 255, 255, 0.92); color: var(--wine); padding: 6px 12px; border-radius: 99px; }
 .ex-play { position: absolute; z-index: 1; right: 16px; bottom: 16px; width: 62px; height: 62px; border-radius: 50%; border: 0; cursor: pointer; color: #fff; background: linear-gradient(180deg, #f0306f, var(--berry-2)); display: grid; place-items: center; box-shadow: 0 12px 26px -8px rgba(224, 24, 94, 0.8); transition: transform 0.15s; }
@@ -241,6 +244,8 @@ h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.08; text-transform: upp
 .ex-time { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-soft); margin-top: 6px; font-variant-numeric: tabular-nums; }
 .ex-story { font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin: 14px 0 10px; }
 .ex-lyrics-btn { border: 0; background: none; padding: 0; color: var(--berry); font-weight: 700; font-size: 14px; cursor: pointer; }
+.ex-links { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+a.ex-lyrics-btn { text-decoration: none; }
 .ex-lyrics { white-space: pre-wrap; font-family: var(--body); font-size: 14px; line-height: 1.6; margin: 12px 0 0; max-height: 260px; overflow: auto; background: var(--rose-50); border-radius: 14px; padding: 14px; }
 .hero-listen { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; font-weight: 700; color: var(--wine); text-decoration: none; }
 .hero-listen i { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: #fff; box-shadow: var(--shadow); color: var(--berry); font-style: normal; }

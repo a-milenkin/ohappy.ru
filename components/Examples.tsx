@@ -49,9 +49,12 @@ function ExampleCard({ ex }: { ex: Example }) {
         <div className="ex-progress" aria-hidden><span style={{ width: `${(t / ex.duration) * 100}%` }} /></div>
         <div className="ex-time"><span>{fmt(t)}</span><span>{fmt(ex.duration)}</span></div>
         <p className="ex-story">{ex.story}</p>
-        <button className="ex-lyrics-btn" onClick={() => setShowLyrics((v) => !v)} aria-expanded={showLyrics}>
-          {showLyrics ? "Скрыть текст" : "Показать текст"}
-        </button>
+        <div className="ex-links">
+          <button className="ex-lyrics-btn" onClick={() => setShowLyrics((v) => !v)} aria-expanded={showLyrics}>
+            {showLyrics ? "Скрыть текст" : "Показать текст"}
+          </button>
+          <a className="ex-lyrics-btn" href={ex.audio} download={`${ex.title}.mp3`}>⬇ Скачать MP3</a>
+        </div>
         {showLyrics && <pre className="ex-lyrics">{ex.lyrics.replace(/^\s*\[.+\]\s*$/gm, "").replace(/\n{3,}/g, "\n\n").trim()}</pre>}
       </div>
       <audio ref={audio} src={ex.audio} preload="none"
